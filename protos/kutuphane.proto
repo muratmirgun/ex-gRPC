@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package kutuphane;
+
+service KutuphaneService {  
+  rpc KitapGetirID (KutuphaneServiceRequest) returns (KutuphaneServiceResponse) {}   
+  rpc TumKitaplariGetir(Empty) returns (KutuphaneServiceResponse) {}  
+  rpc KitapEkle (ResponseKitap) returns (KutuphaneServiceResponse) {}
+  rpc KitapGuncelle (ResponseKitap) returns (KutuphaneServiceResponse) {}
+  rpc KitapSilID (KutuphaneServiceRequest) returns (KutuphaneServiceResponse) {}  
+}
+
+message KutuphaneServiceRequest {
+  int32 id = 1;
+}
+
+message KutuphaneServiceResponse {
+  string statusMessage = 1;
+  string errorMessage = 2;
+  repeated ResponseKitap sonuclar = 3;
+}
+
+message ResponseKitap{
+  int32 ID=1;
+  string KitapAdi=2;
+  string YayinEvi=3;
+  string Yazar=4;
+  string ISBN=5;
+  string Baski=6;
+  string Dil=7;
+  string SayfaSayisi=8;
+}
+
+message Empty {
+}
